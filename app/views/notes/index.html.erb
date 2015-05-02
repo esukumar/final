@@ -1,0 +1,10 @@
+<p><%= link_to "Add a New Note", new_note_url %></p>
+<table class="table table-striped">
+  <% @notes.each do |note| %>
+      <tr>
+        <td><%= link_to note.title, note_url(note.id) %></td>
+        <td><%= link_to "Edit", edit_note_url(note) %></td>
+        <td><%= link_to "Delete", delete_note_url(note), :method => 'delete' %></td>
+      </tr>
+  <% end %>
+</table>

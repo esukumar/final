@@ -1,0 +1,14 @@
+<%= link_to "Go back to Notes", notes_url %>
+<br>
+<%= link_to "Edit", edit_note_url(@note) %>
+<br>
+<%= link_to "Delete", delete_note_url(@note), :method => 'delete' %>
+
+<br>
+<br>
+<h4><%= @note.title %></h4>
+<p>
+  <%= @note.time %>
+  <br>
+  <%= @note.desc %>
+</p>
