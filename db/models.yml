@@ -1,7 +1,32 @@
+Event
+  title: string
+  picture: string
+  created_at: datetime
+  updated_at: datetime
+
+Activity
+  title: string
+  picture: string
+  price: integer
+  desc: text
+  event_id: integer
+
 Note
   title: string
-  time: datetime
+  created_at: datetime
+  updated_at: datetime
   desc: text
+  event_id: integer
+
+Comment
+  title: string
+  rating: integer
+  desc: text
+  note_id: integer
+  event_id: integer
+
+
+
 
 # Example table for a typical Book model.
 #

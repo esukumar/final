@@ -1,0 +1,22 @@
+<%= link_to "Go back to Events", events_url %>
+
+
+<br>
+<br>
+<%= image_tag @event.picture, height: '120', width: '120' %>
+<h3><%= @event.title %></h3>
+<h4><%= "Created at: #{@event.created_at}" %></h4>
+<h4><%= "Updated at: #{@event.updated_at}" %></h4>
+<%= link_to "Add Note", new_note_url(@event) %>
+<br>
+<br>
+<% @notes.each do |note| %>
+    <p>
+    <h4>
+        <%=note.title %>
+        <%=link_to "Edit", edit_note_url(:event_id=>@event.id,:id=>note.id) %>
+        <%=link_to "Delete", delete_note_url(:event_id=>@event.id,:id=>note.id), :method=>'delete'%>
+    </h4>
+    <h5><%= simple_format "#{note.desc}" %></h5>
+    </p>
+<% end %>

@@ -1,0 +1,12 @@
+<%= form_tag event_url(@event.id), :method => 'patch' do %>
+    <div>
+      <%= label_tag "title" %>
+      <%= text_field_tag "title", @event.title, size:30 %>
+    </div>
+
+    <div>
+      <%= label_tag "picture", "Picture URL" %>
+      <%= text_field_tag "picture", @event.picture, size:80 %>
+    </div>
+    <%=submit_tag "Update Event"%>
+<% end %>

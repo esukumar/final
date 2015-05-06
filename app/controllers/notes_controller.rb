@@ -4,43 +4,47 @@ class NotesController < ApplicationController
     @notes = Note.order('title asc')
   end
 
-  def show
-    @note = Note.find_by(id: params[:id])
-    if @note == nil
-      redirect_to notes_url, notice: "Note not found"
-    end
-  end
+  # def show
+  #   @note = Note.find_by(id: params[:id])
+  #   if @note == nil
+  #     redirect_to notes_url, notice: "Note not found"
+  #   end
+  # end
 
   def new
-
+    @event=Event.find_by(id: params[:event_id])
   end
 
   def create
-    note = Note.new
-    note.title = params[:title]
-    note.time = params[:time]
-    note.desc = params[:desc]
-    note.save
-    redirect_to notes_url
+    @event = Event.find_by(id: params[:event_id])
+    @note = Note.new
+    @note.title = params[:title]
+    @note.desc = params[:desc]
+    @note.event_id = params[:event_id]
+    @note.save
+    redirect_to event_url(@event)
   end
 
   def edit
+    @event = Event.find_by(id: params[:event_id])
     @note = Note.find_by(id: params[:id])
   end
 
   def update
+    @event = Event.find_by(id: params[:event_id])
     @note = Note.find_by(id: params[:id])
     @note.title = params[:title]
-    @note.time = params[:time]
     @note.desc = params[:desc]
+    @note.event_id = params[:event_id]
     @note.save
-    redirect_to note_url(params[:id])
+    redirect_to event_url(@event)
   end
 
   def destroy
+    @event = Event.find_by(id: params[:event_id])
     @note = Note.find_by(id: params[:id])
     @note.delete
-    redirect_to notes_url
+    redirect_to event_url(@event)
   end
 
 end

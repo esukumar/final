@@ -1,18 +1,18 @@
-<%= form_tag note_url(@note.id), :method => 'patch' do %>
+<%= form_tag note_url(:event_id=>@event.id,:id=>@note.id), :method => 'patch' do %>
     <div>
-      <label for="title">Title:</label>
-      <input size="30" name="title" id="title" value="<%= @note.title %>">
+      <!--<label for="title">Title:</label>-->
+      <!--<input size="30" name="title" id="title" value="<%= @note.title %>">-->
+      <%= label_tag "title" %>
+      <%= text_field_tag "title", @note.title, size:30 %>
     </div>
 
     <div>
-      <label for="time">Price:</label>
-      <input size="30" name="time" id="time" value="<%= @note.time %>">
+      <!--<label for="desc">Description:</label>-->
+      <!--<textarea cols="80" rows="3" name="desc" id="desc"> <%= @note.desc %> </textarea>-->
+      <%= label_tag "desc", "Description" %>
+      <%= text_area_tag "desc", @note.desc, rows:3, cols:80 %>
     </div>
 
-    <div>
-      <label for="desc">Description:</label>
-      <textarea cols="80" rows="3" name="desc" id="desc"> <%= @note.desc %> </textarea>
-    </div>
-
-    <input type="submit" name="commit" value="Update Note">
+    <!--<input type="submit" name="commit" value="Update Note">-->
+    <%=submit_tag "Update Note"%>
 <% end %>

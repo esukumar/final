@@ -1,20 +1,18 @@
 <h2>Add a New Note</h2>
 
-<%= form_tag notes_url, :method => 'post' do %>
+<%= form_tag notes_url(:event_id=>@event.id), :method => 'post' do %>
     <div>
-      <label for="title">Title:</label>
-      <input size="30" name="title" id="title" placeholder="Example: Sears Tower">
+      <%= label_tag "title" %>
+      <%= text_field_tag "title", "", size:30 %>
     </div>
 
     <div>
-      <label for="time">Time:</label>
-      <input size="30" name="time" id="time" placeholder="now">
+      <!--<label for="desc">Description:</label>-->
+      <!--<textarea cols="80" rows="3" name="desc" id="desc"></textarea>-->
+      <%= label_tag "desc", "Description" %>
+      <%= text_area_tag "desc", "", rows:3, cols:80 %>
     </div>
 
-    <div>
-      <label for="desc">Description:</label>
-      <textarea cols="80" rows="3" name="desc" id="desc"></textarea>
-    </div>
-
-    <input type="submit" name="commit" value="Add Note">
+    <%=submit_tag "Add Note"%>
+    <!--<input type="submit" name="commit" value="Add Note">-->
 <% end %>

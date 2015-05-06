@@ -1,0 +1,14 @@
+<h2>Add a New Event</h2>
+
+<%= form_tag events_url, :method => 'post' do %>
+    <div>
+      <%= label_tag "title" %>
+      <%= text_field_tag "title", "", size:30 %>
+    </div>
+
+    <div>
+      <%= label_tag "picture", "Picture URL" %>
+      <%= text_field_tag "picture", "", size:80 %>
+    </div>
+    <%=submit_tag "Add Event"%>
+<% end %>
