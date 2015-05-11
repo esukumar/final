@@ -34,7 +34,7 @@ class EventsController < ApplicationController
     @event.title = params[:title]
     @event.picture = params[:picture]
     @event.save
-    redirect_to event_url(params[:id])
+    redirect_to events_url
   end
 
   def destroy
