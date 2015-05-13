@@ -14,15 +14,18 @@ class EventsController < ApplicationController
   end
 
   def new
-
+    @event = Event.new
   end
 
   def create
-    event = Event.new
-    event.title = params[:title]
-    event.picture = params[:picture]
-    event.save
-    redirect_to events_url
+    @event = Event.new
+    @event.title = params[:title]
+    @event.picture = params[:picture]
+    if @event.save
+      redirect_to events_url
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -34,7 +37,11 @@ class EventsController < ApplicationController
     @event.title = params[:title]
     @event.picture = params[:picture]
     @event.save
-    redirect_to events_url
+    if @event.save
+      redirect_to events_url
+    else
+      render 'edit'
+    end
   end
 
   def destroy

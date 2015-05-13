@@ -1,3 +1,13 @@
+<h2>Edit this Event</h2>
+
+<% if @event.errors.any? %>
+    <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+      <% end %>
+    </ul>
+<% end %>
+
 <%= form_tag event_url(@event.id), :method => 'patch' do %>
     <div>
       <%= label_tag "title" %>

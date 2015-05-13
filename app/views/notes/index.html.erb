@@ -4,7 +4,7 @@
       <tr>
         <td><%= link_to note.title, note_url(note.id) %></td>
         <td><%= link_to "Edit", edit_note_url(note) %></td>
-        <td><%= link_to "Delete", delete_note_url(note), :method => 'delete' %></td>
+        <td><%= link_to "Delete", note_url(note), :method => 'delete' %></td>
       </tr>
   <% end %>
 </table>

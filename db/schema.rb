@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "notes", force: :cascade do |t|
     t.string   "title"
-    t.datetime "time"
     t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"

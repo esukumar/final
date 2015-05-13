@@ -4,7 +4,7 @@
       <tr>
         <td><%= link_to event.title, event_url(event.id) %></td>
         <td><%= link_to "Edit", edit_event_url(event) %></td>
-        <td><%= link_to "Delete", delete_event_url(event), :method => 'delete' %></td>
+        <td><%= link_to "Delete", event_url(event), :method => 'delete' %></td>
       </tr>
   <% end %>
 </table>

@@ -1,27 +1,29 @@
 Rails.application.routes.draw do
   root 'home#index', :as => 'home'
-  
-  get '/events/new' => 'events#new', :as => 'new_event'
-  post '/events' => 'events#create'
 
-  get '/events' => 'events#index'
-  get '/events/:id' => 'events#show', :as => 'event'
+  resources :events
 
-  get '/events/:id/edit' => 'events#edit', :as => 'edit_event'
-  patch '/events/:id' => 'events#update'
-
-  delete '/events/:id' => 'events#destroy', :as => 'delete_event'
+  # get '/events/new' => 'events#new', :as => 'new_event'
+  # post '/events' => 'events#create'
+  #
+  # get '/events' => 'events#index'
+  # get '/events/:id' => 'events#show', :as => 'event'
+  #
+  # get '/events/:id/edit' => 'events#edit', :as => 'edit_event'
+  # patch '/events/:id' => 'events#update'
+  #
+  # delete '/events/:id' => 'events#destroy', :as => 'delete_event'
   
   get '/events/:event_id/notes/new' => 'notes#new', :as => 'new_note'
   post '/events/:event_id/notes' => 'notes#create', :as => 'notes'
 
   get '/events/:event_id/notes' => 'notes#index'
-  # get '/events/:event_id/notes/:id' => 'notes#show', :as => 'note'
+  get '/events/:event_id/notes/:id' => 'notes#show', :as => 'note'
 
   get '/events/:event_id/notes/:id/edit' => 'notes#edit', :as => 'edit_note'
   patch '/events/:event_id/notes/:id' => 'notes#update'
 
-  delete '/events/:event_id/notes/:id' => 'notes#destroy', :as => 'delete_note'
+  delete '/events/:event_id/notes/:id' => 'notes#destroy'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -13,6 +13,7 @@ class NotesController < ApplicationController
 
   def new
     @event=Event.find_by(id: params[:event_id])
+    @note = Note.new
   end
 
   def create
@@ -21,8 +22,11 @@ class NotesController < ApplicationController
     @note.title = params[:title]
     @note.desc = params[:desc]
     @note.event_id = params[:event_id]
-    @note.save
-    redirect_to event_url(@event)
+    if @note.save
+      redirect_to event_url(@event)
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -36,8 +40,11 @@ class NotesController < ApplicationController
     @note.title = params[:title]
     @note.desc = params[:desc]
     @note.event_id = params[:event_id]
-    @note.save
-    redirect_to event_url(@event)
+    if @note.save
+      redirect_to event_url(@event)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
