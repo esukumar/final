@@ -1,5 +1,6 @@
 <div class="container">
-    <p><%= link_to "Add a New Event", new_event_url %></p>
+  <p><%= link_to "Add Event", new_event_url %></p>
+  <div class="panel panel-default">
     <table class="table table-striped">
       <% @events.each do |event| %>
           <tr>
@@ -9,4 +10,5 @@
           </tr>
       <% end %>
     </table>
+  </div>
 </div>

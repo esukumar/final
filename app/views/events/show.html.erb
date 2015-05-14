@@ -1,32 +1,39 @@
 <div class="container">
-    <h2><%= @event.title %></h2>
-    <%= image_tag @event.picture, height: '120', width: '120' %>
-    <h4><%= "Created at: #{@event.created_at}" %></h4>
-    <h4><%= "Updated at: #{@event.updated_at}" %></h4>
-    <%= link_to "Add Note", new_event_note_url(@event) %>
+    <h2>
+      <%= image_tag @event.picture, height: '120', width: '120' %>
+      <%= @event.title %>
+      <small><%= link_to "Add Note", new_event_note_url(@event) %></small>
+      <small><%= link_to "Add Image", new_event_image_url(@event) %></small>
+      <small><%= "Updated at: #{@event.updated_at}" %></small>
+    </h2>
+
+
+
     <br><br><br>
-    <% @notes.each do |note| %>
-        <div class="container">
+    <% @posts.each do |post| %>
+        <div class="panel panel-default">
+          <%if post.class.name == "Note"%>
             <h4>
-                <%=note.title %>
-                <small><%=link_to "Edit", edit_event_note_url(@event,note) %></small>
-                <small><%=link_to "Delete", event_note_url(@event,note), :method=>'delete'%></small>
+                <%=post.title %>
+                <small><%= "#{post.created_at}" %></small>
+                <small><%=link_to "Edit", edit_event_note_url(@event,post) %></small>
+                <small><%=link_to "Delete", event_note_url(@event,post), :method=>'delete'%></small>
             </h4>
-            <%= simple_format "#{note.desc}" %>
-            <% if note.comments.any? %>
+            <%= simple_format "#{post.desc}" %>
+            <% if post.comments.any? %>
                 <ul>
-                    <% note.comments.each do |comment| %>
+                    <% post.comments.each do |comment| %>
                         <li>
                           <h5>
                             <%= comment.desc %>
-                            <small><%=link_to "Delete", event_note_comment_url(@event,note,comment), :method=>'delete'%></small>
+                            <small><%=link_to "Delete", event_note_comment_url(@event,post,comment), :method=>'delete'%></small>
                           </h5>
                         </li>
                     <% end %>
                 </ul>
             <% end %>
             <div class="form-inline">
-                <%= form_tag event_note_comments_url(@event,note), :method => 'post' do %>
+                <%= form_tag event_note_comments_url(@event,post), :method => 'post' do %>
                   <div class="form-group">
                     <%= label_tag "desc", "" %>
                     <%= text_area_tag "desc", "", rows:2, cols:40 %>
@@ -34,6 +41,36 @@
                     <%=submit_tag "Comment"%>
                 <% end %>
             </div>
+          <%elsif post.class.name == "Image"%>
+              <h4>
+                <%=post.title %>
+                <small><%= "#{post.created_at}" %></small>
+                <small><%=link_to "Edit", edit_event_image_url(@event,post) %></small>
+                <small><%=link_to "Delete", event_image_url(@event,post), :method=>'delete'%></small>
+              </h4>
+              <%= image_tag post.picture, height: '240', width: '240' %>
+              <% if post.comments.any? %>
+                  <ul>
+                    <% post.comments.each do |comment| %>
+                        <li>
+                          <h5>
+                            <%= comment.desc %>
+                            <small><%=link_to "Delete", event_image_comment_url(@event,post,comment), :method=>'delete'%></small>
+                          </h5>
+                        </li>
+                    <% end %>
+                  </ul>
+              <% end %>
+              <div class="form-inline">
+                <%= form_tag event_image_comments_url(@event,post), :method => 'post' do %>
+                    <div class="form-group">
+                      <%= label_tag "desc", "" %>
+                      <%= text_area_tag "desc", "", rows:2, cols:40 %>
+                    </div>
+                    <%=submit_tag "Comment"%>
+                <% end %>
+              </div>
+          <%end%>
         </div>
 
     <% end %>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :comments, only:[:create,:destroy]
     end
     resources :notes, except:[:index,:show], concerns: :commentable
+    resources :images, except:[:index,:show], concerns: :commentable
   end
 
 end

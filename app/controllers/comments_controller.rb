@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new
     @comment.desc = params[:desc]
     @comment.note_id = params[:note_id]
+    @comment.image_id = params[:image_id]
     if @comment.save
       @event.touch
     end

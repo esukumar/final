@@ -11,11 +11,13 @@ Activity
 
 Note
   title: string
+  created_at: datetime
   desc: text
   event_id: integer
 
 Image
   title: string
+  created_at: datetime
   picture: string
   event_id: integer
 
@@ -23,8 +25,6 @@ Comment
   desc: text
   note_id: integer
   image_id: integer
-
-
 
 
 # Example table for a typical Book model.

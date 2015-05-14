@@ -10,6 +10,8 @@ class EventsController < ApplicationController
       redirect_to events_url, notice: "Event not found"
     else
       @notes = @event.notes
+      @images = @event.images
+      @posts = (@notes+@images).sort_by { |post| post.created_at}.reverse
     end
   end
 
