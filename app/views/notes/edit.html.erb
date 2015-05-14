@@ -1,23 +1,26 @@
-<h2>Edit this Note</h2>
+<div class="container">
+    <h2>Edit this Note</h2>
+    <% if @note.errors.any? %>
+        <ul>
+          <% @note.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
 
-<% if @note.errors.any? %>
-    <ul>
-      <% @note.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-      <% end %>
-    </ul>
-<% end %>
+    <%= form_tag event_note_url(@event,@note), :method => 'patch' do %>
+        <div>
+          <%= label_tag "title" %>
+          <br>
+          <%= text_field_tag "title", @note.title, size:30 %>
+        </div>
 
-<%= form_tag note_url(:event_id=>@event.id,:id=>@note.id), :method => 'patch' do %>
-    <div>
-      <%= label_tag "title" %>
-      <%= text_field_tag "title", @note.title, size:30 %>
-    </div>
+        <div>
+          <%= label_tag "desc", "Description" %>
+          <br>
+          <%= text_area_tag "desc", @note.desc, rows:3, cols:80 %>
+        </div>
 
-    <div>
-      <%= label_tag "desc", "Description" %>
-      <%= text_area_tag "desc", @note.desc, rows:3, cols:80 %>
-    </div>
-
-    <%=submit_tag "Update Note"%>
-<% end %>
+        <%=submit_tag "Update Note"%>
+    <% end %>
+</div>

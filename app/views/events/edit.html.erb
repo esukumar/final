@@ -1,22 +1,25 @@
-<h2>Edit this Event</h2>
+<div class="container">
+    <h2>Edit this Event</h2>
+    <% if @event.errors.any? %>
+        <ul>
+          <% @event.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
 
-<% if @event.errors.any? %>
-    <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-      <% end %>
-    </ul>
-<% end %>
+    <%= form_tag event_url(@event.id), :method => 'patch' do %>
+        <div>
+          <%= label_tag "title" %>
+          <br>
+          <%= text_field_tag "title", @event.title, size:30 %>
+        </div>
 
-<%= form_tag event_url(@event.id), :method => 'patch' do %>
-    <div>
-      <%= label_tag "title" %>
-      <%= text_field_tag "title", @event.title, size:30 %>
-    </div>
-
-    <div>
-      <%= label_tag "picture", "Picture URL" %>
-      <%= text_field_tag "picture", @event.picture, size:80 %>
-    </div>
-    <%=submit_tag "Update Event"%>
-<% end %>
+        <div>
+          <%= label_tag "picture", "Picture URL" %>
+          <br>
+          <%= text_field_tag "picture", @event.picture, size:80 %>
+        </div>
+        <%=submit_tag "Update Event"%>
+    <% end %>
+</div>

@@ -15,23 +15,19 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "activities", force: :cascade do |t|
     t.string  "title"
-    t.string  "picture"
     t.integer "price"
-    t.text    "desc"
     t.integer "event_id"
   end
 
   add_index "activities", ["event_id"], name: "index_activities_on_event_id"
 
   create_table "comments", force: :cascade do |t|
-    t.string  "title"
-    t.integer "rating"
     t.text    "desc"
     t.integer "note_id"
-    t.integer "event_id"
+    t.integer "image_id"
   end
 
-  add_index "comments", ["event_id"], name: "index_comments_on_event_id"
+  add_index "comments", ["image_id"], name: "index_comments_on_image_id"
   add_index "comments", ["note_id"], name: "index_comments_on_note_id"
 
   create_table "events", force: :cascade do |t|
@@ -40,6 +36,14 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "images", force: :cascade do |t|
+    t.string  "title"
+    t.string  "picture"
+    t.integer "event_id"
+  end
+
+  add_index "images", ["event_id"], name: "index_images_on_event_id"
 
   create_table "notes", force: :cascade do |t|
     t.string   "title"

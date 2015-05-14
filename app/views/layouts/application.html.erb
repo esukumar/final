@@ -2,15 +2,19 @@
 <html>
 <head>
   <title>Centurion</title>
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-    <div>
-      <h1 class="text-center"><%= link_to "Centurion Travel Blogs", home_url %></h1>
-    </div>
-<%= yield %>
+    <body>
+        <div class="container">
+          <h1>
+            <%= link_to "Centurion Travel Blogs", home_url %>
+            <small> <%= link_to "Events", events_url%></small>
+          </h1>
+        </div>
+    <%= yield %>
 
-</body>
+    </body>
 </html>

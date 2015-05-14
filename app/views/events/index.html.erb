@@ -1,10 +1,12 @@
-<p><%= link_to "Add a New Event", new_event_url %></p>
-<table class="table table-striped">
-  <% @events.each do |event| %>
-      <tr>
-        <td><%= link_to event.title, event_url(event.id) %></td>
-        <td><%= link_to "Edit", edit_event_url(event) %></td>
-        <td><%= link_to "Delete", event_url(event), :method => 'delete' %></td>
-      </tr>
-  <% end %>
-</table>
+<div class="container">
+    <p><%= link_to "Add a New Event", new_event_url %></p>
+    <table class="table table-striped">
+      <% @events.each do |event| %>
+          <tr>
+            <td><%= link_to event.title, event_url(event.id) %></td>
+            <td><%= link_to "Edit", edit_event_url(event) %></td>
+            <td><%= link_to "Delete", event_url(event), :method => 'delete' %></td>
+          </tr>
+      <% end %>
+    </table>
+</div>

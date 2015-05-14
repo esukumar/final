@@ -1,22 +1,40 @@
-<%= link_to "Go back to Events", events_url %>
+<div class="container">
+    <h2><%= @event.title %></h2>
+    <%= image_tag @event.picture, height: '120', width: '120' %>
+    <h4><%= "Created at: #{@event.created_at}" %></h4>
+    <h4><%= "Updated at: #{@event.updated_at}" %></h4>
+    <%= link_to "Add Note", new_event_note_url(@event) %>
+    <br><br><br>
+    <% @notes.each do |note| %>
+        <div class="container">
+            <h4>
+                <%=note.title %>
+                <small><%=link_to "Edit", edit_event_note_url(@event,note) %></small>
+                <small><%=link_to "Delete", event_note_url(@event,note), :method=>'delete'%></small>
+            </h4>
+            <%= simple_format "#{note.desc}" %>
+            <% if note.comments.any? %>
+                <ul>
+                    <% note.comments.each do |comment| %>
+                        <li>
+                          <h5>
+                            <%= comment.desc %>
+                            <small><%=link_to "Delete", event_note_comment_url(@event,note,comment), :method=>'delete'%></small>
+                          </h5>
+                        </li>
+                    <% end %>
+                </ul>
+            <% end %>
+            <div class="form-inline">
+                <%= form_tag event_note_comments_url(@event,note), :method => 'post' do %>
+                  <div class="form-group">
+                    <%= label_tag "desc", "" %>
+                    <%= text_area_tag "desc", "", rows:2, cols:40 %>
+                  </div>
+                    <%=submit_tag "Comment"%>
+                <% end %>
+            </div>
+        </div>
 
-
-<br>
-<br>
-<%= image_tag @event.picture, height: '120', width: '120' %>
-<h3><%= @event.title %></h3>
-<h4><%= "Created at: #{@event.created_at}" %></h4>
-<h4><%= "Updated at: #{@event.updated_at}" %></h4>
-<%= link_to "Add Note", new_note_url(@event) %>
-<br>
-<br>
-<% @notes.each do |note| %>
-    <p>
-    <h4>
-        <%=note.title %>
-        <%=link_to "Edit", edit_note_url(:event_id=>@event.id,:id=>note.id) %>
-        <%=link_to "Delete", delete_note_url(:event_id=>@event.id,:id=>note.id), :method=>'delete'%>
-    </h4>
-    <h5><%= simple_format "#{note.desc}" %></h5>
-    </p>
-<% end %>
+    <% end %>
+</div>

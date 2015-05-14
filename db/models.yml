@@ -6,24 +6,23 @@ Event
 
 Activity
   title: string
-  picture: string
   price: integer
-  desc: text
   event_id: integer
 
 Note
   title: string
-  created_at: datetime
-  updated_at: datetime
   desc: text
   event_id: integer
 
-Comment
+Image
   title: string
-  rating: integer
+  picture: string
+  event_id: integer
+
+Comment
   desc: text
   note_id: integer
-  event_id: integer
+  image_id: integer
 
 
 
