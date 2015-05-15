@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="panel panel-default">
+    <table class="table table-striped">
+      <% @activities.each do |activity| %>
+          <tr>
+            <td><%= link_to activity.title, activity_url(activity) %></td>
+            <td><%= link_to "Edit", edit_activity_url(activity) %></td>
+            <td><%= link_to "Delete", activity_url(activity), :method => 'delete' %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

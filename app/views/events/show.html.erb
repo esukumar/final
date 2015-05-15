@@ -4,10 +4,20 @@
       <%= @event.title %>
       <small><%= link_to "Add Note", new_event_note_url(@event) %></small>
       <small><%= link_to "Add Image", new_event_image_url(@event) %></small>
+      <small><%= link_to "Add Activity", new_event_activity_url(@event) %></small>
       <small><%= "Updated at: #{@event.updated_at}" %></small>
     </h2>
 
-
+      <div class="panel panel-default">
+        <h3>Activities</h3>
+        <table class="table table-striped">
+          <% @activities.each do |activity| %>
+              <tr>
+                <td><%= link_to activity.title, activity_url(activity) %></td>
+              </tr>
+          <% end %>
+        </table>
+      </div>
 
     <br><br><br>
     <% @posts.each do |post| %>

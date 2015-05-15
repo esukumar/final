@@ -6,8 +6,10 @@ Event
 
 Activity
   title: string
-  price: integer
+
+EventActivity
   event_id: integer
+  activity_id: integer
 
 Note
   title: string

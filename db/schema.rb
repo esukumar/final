@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "activities", force: :cascade do |t|
     t.string  "title"
-    t.integer "price"
     t.integer "event_id"
   end
 
@@ -29,6 +28,14 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_index "comments", ["image_id"], name: "index_comments_on_image_id"
   add_index "comments", ["note_id"], name: "index_comments_on_note_id"
+
+  create_table "event_activities", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "activity_id"
+  end
+
+  add_index "event_activities", ["activity_id"], name: "index_event_activities_on_activity_id"
+  add_index "event_activities", ["event_id"], name: "index_event_activities_on_event_id"
 
   create_table "events", force: :cascade do |t|
     t.string   "title"

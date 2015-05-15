@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>
+      <%= @activity.title %>
+    </h2>
+    <div class="panel panel-default">
+        <table class="table table-striped">
+          <% @events.each do |event| %>
+              <tr>
+                <td><%= link_to event.title, event_url(event) %></td>
+              </tr>
+          <% end %>
+        </table>
+    </div>
+</div>

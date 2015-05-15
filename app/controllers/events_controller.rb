@@ -12,6 +12,7 @@ class EventsController < ApplicationController
       @notes = @event.notes
       @images = @event.images
       @posts = (@notes+@images).sort_by { |post| post.created_at}.reverse
+      @activities = @event.activities
     end
   end
 
