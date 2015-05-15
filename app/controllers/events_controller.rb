@@ -13,6 +13,7 @@ class EventsController < ApplicationController
       @images = @event.images
       @posts = (@notes+@images).sort_by { |post| post.created_at}.reverse
       @activities = @event.activities
+      @event_activities = @activities.map {|activity| EventActivity.find_by(event_id:@event.id,activity_id:activity.id)}
     end
   end
 

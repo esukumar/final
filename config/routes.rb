@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   end
 
   resources :activities, only:[:index]
+  resources :event_activities, only: [:destroy]
 
 end

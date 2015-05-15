@@ -10,12 +10,15 @@
 
       <div class="panel panel-default">
         <h3>Activities</h3>
-        <table class="table table-striped">
-          <% @activities.each do |activity| %>
+        <table class="table table-condensed table-bordered table-striped">
+
+          <% @activities.zip(@event_activities).each do |activity,event_activity| %>
               <tr>
                 <td><%= link_to activity.title, activity_url(activity) %></td>
+                <td><%= link_to "Delete", event_activity_url(event_activity), :method => 'delete' %></td>
               </tr>
           <% end %>
+
         </table>
       </div>
 
