@@ -13,6 +13,13 @@
             <%= link_to "Centurion Travel Blogs", home_url %>
             <small> <%= link_to "Events", events_url%></small>
             <small> <%= link_to "Activities", activities_url%></small>
+            <% if cookies["user_id"].present? %>
+                <small>Howdy, <%= User.find_by(id: cookies["user_id"]).email %></small>
+                <small><%= link_to "Sign Out", '/logout' %></small>
+            <% else %>
+                <small><%= link_to "Sign Up", '/signup' %></small>
+                <small><%= link_to "Sign In", '/login' %></small>
+            <% end %>
           </h1>
         </div>
     <%= yield %>

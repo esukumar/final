@@ -1,8 +1,8 @@
 <div class="container">
     <h2>Edit this Activity</h2>
-    <% if @activity.errors.any? %>
+    <% if @errors.any? %>
         <ul>
-          <% @activity.errors.full_messages.each do |msg| %>
+          <% @errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
           <% end %>
         </ul>

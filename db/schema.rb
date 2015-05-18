@@ -14,11 +14,8 @@
 ActiveRecord::Schema.define(version: 0) do
 
   create_table "activities", force: :cascade do |t|
-    t.string  "title"
-    t.integer "event_id"
+    t.string "title"
   end
-
-  add_index "activities", ["event_id"], name: "index_activities_on_event_id"
 
   create_table "comments", force: :cascade do |t|
     t.text    "desc"
@@ -62,5 +59,10 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   add_index "notes", ["event_id"], name: "index_notes_on_event_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+  end
 
 end

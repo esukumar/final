@@ -15,6 +15,8 @@ class ActivitiesController < ApplicationController
   def new
     @event=Event.find_by(id: params[:event_id])
     @activity = Activity.new
+    @event_activity = EventActivity.new
+    @errors = []
   end
 
   def create
@@ -24,18 +26,20 @@ class ActivitiesController < ApplicationController
     else
       @activity = Activity.new
       @activity.title = params[:title]
-    end
-    if @activity.save
-      @event_activity = EventActivity.new
-      @event_activity.event_id = @event.id
-      @event_activity.activity_id = @activity.id
-      if @event_activity.save
-        @event.touch
-        redirect_to event_url(@event)
-      else
+      if not @activity.save
+        @errors = @activity.errors
         render 'new'
+        return
       end
+    end
+    @event_activity = EventActivity.new
+    @event_activity.event_id = @event.id
+    @event_activity.activity_id = @activity.id
+    if @event_activity.save
+      @event.touch
+      redirect_to event_url(@event)
     else
+      @errors = @event_activity.errors
       render 'new'
     end
   end

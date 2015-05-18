@@ -4,4 +4,5 @@ class Event < ActiveRecord::Base
   has_many :event_activities
   has_many :activities, through: :event_activities
   validates_presence_of :title
+  validates :title, length: {maximum: 30}, uniqueness: true
 end
