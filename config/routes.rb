@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'home#index', :as => 'home'
+  root 'home#index'
 
   ##### Sign Up and Sign In and Sign Out
   get "/signup" => 'users#new'
