@@ -3,11 +3,8 @@ Rails.application.routes.draw do
   root 'home#index'
 
   ##### Sign Up and Sign In and Sign Out
-  get "/signup" => 'users#new'
-  post "/users" => 'users#create'
-
-  get "/login" => 'sessions#new'
-  post '/sessions' => 'sessions#create'
+  resources :users, only:[:new,:create,:destroy]
+  resources :sessions, only:[:new,:create,:destroy]
 
   resources :events do
     concern :commentable do

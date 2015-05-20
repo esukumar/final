@@ -4,8 +4,10 @@
       <% @activities.each do |activity| %>
           <tr>
             <td><%= link_to activity.title, activity_url(activity) %></td>
-            <td><%= link_to "Edit", edit_activity_url(activity) %></td>
-            <td><%= link_to "Delete", activity_url(activity), :method => 'delete' %></td>
+            <% if cookies["user_id"].present? %>
+                <td><%= link_to "Edit", edit_activity_url(activity) %></td>
+                <td><%= link_to "Delete", activity_url(activity), :method => 'delete' %></td>
+            <% end %>
           </tr>
       <% end %>
     </table>

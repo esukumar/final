@@ -5,6 +5,7 @@ User
 Event
   title: string
   picture: string
+  user_id: integer
   created_at: datetime
   updated_at: datetime
 
@@ -31,6 +32,7 @@ Comment
   desc: text
   note_id: integer
   image_id: integer
+  user_id: integer
 
 
 # Example table for a typical Book model.

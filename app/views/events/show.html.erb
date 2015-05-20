@@ -2,9 +2,12 @@
     <h2>
       <%= image_tag @event.picture, height: '120', width: '120' %>
       <%= @event.title %>
-      <small><%= link_to "Add Note", new_event_note_url(@event) %></small>
-      <small><%= link_to "Add Image", new_event_image_url(@event) %></small>
-      <small><%= link_to "Add Activity", new_event_activity_url(@event) %></small>
+      <% if cookies["user_id"].present? %>
+          <small><%= link_to "Add Note", new_event_note_url(@event) %></small>
+          <small><%= link_to "Add Image", new_event_image_url(@event) %></small>
+          <small><%= link_to "Add Activity", new_event_activity_url(@event) %></small>
+      <%end%>
+      <small><%= "Created by: #{@event.user.email}" %></small>
       <small><%= "Updated at: #{@event.updated_at}" %></small>
     </h2>
 
@@ -15,7 +18,9 @@
           <% @activities.zip(@event_activities).each do |activity,event_activity| %>
               <tr>
                 <td><%= link_to activity.title, activity_url(activity) %></td>
-                <td><%= link_to "Delete", event_activity_url(event_activity), :method => 'delete' %></td>
+                <% if cookies["user_id"].present? %>
+                    <td><%= link_to "Delete", event_activity_url(event_activity), :method => 'delete' %></td>
+                <%end%>
               </tr>
           <% end %>
 
@@ -29,8 +34,10 @@
             <h4>
                 <%=post.title %>
                 <small><%= "#{post.created_at}" %></small>
-                <small><%=link_to "Edit", edit_event_note_url(@event,post) %></small>
-                <small><%=link_to "Delete", event_note_url(@event,post), :method=>'delete'%></small>
+                <% if cookies["user_id"].present? %>
+                    <small><%=link_to "Edit", edit_event_note_url(@event,post) %></small>
+                    <small><%=link_to "Delete", event_note_url(@event,post), :method=>'delete'%></small>
+                <% end %>
             </h4>
             <%= simple_format "#{post.desc}" %>
             <% if post.comments.any? %>
@@ -39,27 +46,32 @@
                         <li>
                           <h5>
                             <%= comment.desc %>
+                            <small>posted by: <%=comment.user.email%></small>
                             <small><%=link_to "Delete", event_note_comment_url(@event,post,comment), :method=>'delete'%></small>
                           </h5>
                         </li>
                     <% end %>
                 </ul>
             <% end %>
-            <div class="form-inline">
-                <%= form_tag event_note_comments_url(@event,post), :method => 'post' do %>
-                  <div class="form-group">
-                    <%= label_tag "desc", "" %>
-                    <%= text_area_tag "desc", "", rows:2, cols:40 %>
-                  </div>
-                    <%=submit_tag "Comment"%>
-                <% end %>
-            </div>
+            <% if cookies["user_id"].present? %>
+                <div class="form-inline">
+                    <%= form_tag event_note_comments_url(@event,post), :method => 'post' do %>
+                      <div class="form-group">
+                        <%= label_tag "desc", "" %>
+                        <%= text_area_tag "desc", "", rows:2, cols:40 %>
+                      </div>
+                        <%=submit_tag "Comment"%>
+                    <% end %>
+                </div>
+            <% end %>
           <%elsif post.class.name == "Image"%>
               <h4>
                 <%=post.title %>
                 <small><%= "#{post.created_at}" %></small>
-                <small><%=link_to "Edit", edit_event_image_url(@event,post) %></small>
-                <small><%=link_to "Delete", event_image_url(@event,post), :method=>'delete'%></small>
+                <% if cookies["user_id"].present? %>
+                    <small><%=link_to "Edit", edit_event_image_url(@event,post) %></small>
+                    <small><%=link_to "Delete", event_image_url(@event,post), :method=>'delete'%></small>
+                <% end %>
               </h4>
               <%= image_tag post.picture, height: '240', width: '240' %>
               <% if post.comments.any? %>
@@ -68,21 +80,24 @@
                         <li>
                           <h5>
                             <%= comment.desc %>
+                            <small>posted by: <%=comment.user.email%></small>
                             <small><%=link_to "Delete", event_image_comment_url(@event,post,comment), :method=>'delete'%></small>
                           </h5>
                         </li>
                     <% end %>
                   </ul>
               <% end %>
-              <div class="form-inline">
-                <%= form_tag event_image_comments_url(@event,post), :method => 'post' do %>
-                    <div class="form-group">
-                      <%= label_tag "desc", "" %>
-                      <%= text_area_tag "desc", "", rows:2, cols:40 %>
-                    </div>
-                    <%=submit_tag "Comment"%>
-                <% end %>
-              </div>
+              <% if cookies["user_id"].present? %>
+                  <div class="form-inline">
+                    <%= form_tag event_image_comments_url(@event,post), :method => 'post' do %>
+                        <div class="form-group">
+                          <%= label_tag "desc", "" %>
+                          <%= text_area_tag "desc", "", rows:2, cols:40 %>
+                        </div>
+                        <%=submit_tag "Comment"%>
+                    <% end %>
+                  </div>
+              <% end %>
           <%end%>
         </div>
 

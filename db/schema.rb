@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.text    "desc"
     t.integer "note_id"
     t.integer "image_id"
+    t.integer "user_id"
   end
 
   add_index "comments", ["image_id"], name: "index_comments_on_image_id"
   add_index "comments", ["note_id"], name: "index_comments_on_note_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "event_activities", force: :cascade do |t|
     t.integer "event_id"
@@ -39,7 +41,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "picture"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "images", force: :cascade do |t|
     t.string   "title"

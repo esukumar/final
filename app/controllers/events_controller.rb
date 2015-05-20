@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @user = User.find_by(email: params[:email])
     @event = Event.find_by(id: params[:id])
     if @event == nil
       redirect_to events_url, notice: "Event not found"
@@ -25,6 +26,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @event.title = params[:title]
     @event.picture = params[:picture]
+    @event.user_id = cookies[:user_id]
     if @event.save
       redirect_to events_url
     else
@@ -40,6 +42,7 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params[:id])
     @event.title = params[:title]
     @event.picture = params[:picture]
+    @event.user_id = cookies[:user_id]
     @event.save
     if @event.save
       redirect_to events_url
