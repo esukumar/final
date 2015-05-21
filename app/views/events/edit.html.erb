@@ -10,16 +10,17 @@
 
     <%= form_tag event_url(@event), :method => 'patch' do %>
         <div>
-          <%= label_tag "title" %>
+          <%= label_tag 'title' %>
           <br>
-          <%= text_field_tag "title", @event.title, size:30 %>
+          <%= text_field_tag 'title', @event.title, size:30 %>
         </div>
 
         <div>
-          <%= label_tag "picture", "Picture URL" %>
+          <%= label_tag 'picture', 'Picture URL' %>
           <br>
-          <%= text_field_tag "picture", @event.picture, size:120 %>
+          <%= text_field_tag 'picture', @event.picture, size:120 %>
         </div>
-        <%=submit_tag "Update Event"%>
+        <%=submit_tag 'Update Event', {:class=>'btn btn-default'}%>
+        <%= link_to 'Cancel', :back, {:class=>'btn btn-default'} %>
     <% end %>
 </div>

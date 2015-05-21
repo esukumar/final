@@ -21,6 +21,7 @@
           <%= text_field_tag 'picture', @image.picture, size:120 %>
         </div>
 
-        <%=submit_tag 'Update Image'%>
+        <%=submit_tag 'Update Image', {:class=>'btn btn-default'}%>
+        <%= link_to 'Cancel', :back, {:class=>'btn btn-default'} %>
     <% end %>
 </div>

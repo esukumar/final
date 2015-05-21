@@ -1,5 +1,5 @@
 <div class="container">
-    <h3>Sign Up</h3>
+    <h2>Sign Up</h2>
     <% if @user.errors.any? %>
         <ul class="errors">
           <% @user.errors.full_messages.each do |msg| %>
@@ -26,6 +26,7 @@
           <br>
           <%= text_field_tag :name %>
         </div>
-        <%= submit_tag "Sign Up!" %>
+        <%= submit_tag 'Sign Up!', {:class=>'btn btn-default'} %>
+        <%= link_to 'Cancel', :back, {:class=>'btn btn-default'} %>
     <% end %>
 </div>
