@@ -2,17 +2,18 @@
     <h3>Sign In</h3>
 
     <%= form_tag sessions_url do %>
-
-        <p>
+        <div>
           <%= label_tag :email %>
+          <br>
           <%= text_field_tag :email %>
-        </p>
+        </div>
 
-        <p>
+        <div>
           <%= label_tag :password %>
+          <br>
           <%= text_field_tag :password %>
-        </p>
+        </div>
 
-        <%= submit_tag "Let Me In!" %>
+        <%= submit_tag "Sign In!" %>
     <% end %>
 </div>

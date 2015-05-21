@@ -9,21 +9,23 @@
     <% end %>
 
     <%= form_tag users_url do %>
-
-        <p>
+        <div>
           <%= label_tag :email %>
+          <br>
           <%= text_field_tag :email %>
-        </p>
+        </div>
 
-        <p>
+        <div>
           <%= label_tag :password %>
+          <br>
           <%= text_field_tag :password %>
-        </p>
+        </div>
 
-        <p>
+        <div>
           <%= label_tag :name %>
+          <br>
           <%= text_field_tag :name %>
-        </p>
-        <%= submit_tag "Sign Me Up!" %>
+        </div>
+        <%= submit_tag "Sign Up!" %>
     <% end %>
 </div>
