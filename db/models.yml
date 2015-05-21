@@ -1,6 +1,7 @@
 User
   email: string
   password: string
+  name: string
 
 Event
   title: string

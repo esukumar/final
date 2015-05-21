@@ -15,7 +15,7 @@
             <small> <%= link_to "Activities", activities_url%></small>
             <% if cookies["user_id"].present? %>
                 <small><%= link_to "Sign Out", session_url(cookies["user_id"]), :method => 'delete' %></small>
-                <small>Hello, <%= User.find_by(id: cookies["user_id"]).email %></small>
+                <small>Hello, <%= User.find_by(id: cookies["user_id"]).name %></small>
             <% else %>
                 <small><%= link_to "Sign Up", new_user_url %></small>
                 <small><%= link_to "Sign In", new_session_url %></small>

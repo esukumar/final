@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
   def index
     @activities = Activity.order('title asc')
+    @user = User.find_by(id:cookies[:user_id])
   end
 
   def show

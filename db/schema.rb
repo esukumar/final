@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "images", force: :cascade do |t|
     t.string   "title"
+    t.datetime "created_at"
     t.string   "picture"
     t.integer  "event_id"
-    t.datetime "created_at"
   end
 
   add_index "images", ["event_id"], name: "index_images_on_event_id"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password"
+    t.string "name"
   end
 
 end

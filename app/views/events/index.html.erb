@@ -1,5 +1,5 @@
 <div class="container">
-  <% if cookies["user_id"].present? %>
+  <% if @user.present? %>
     <p><%= link_to "Add Event", new_event_url %></p>
   <%end%>
   <div class="panel panel-default">
@@ -7,7 +7,7 @@
       <% @events.each do |event| %>
           <tr>
             <td><%= link_to event.title, event_url(event.id) %></td>
-            <% if cookies["user_id"].present? %>
+            <% if @user.present? and @user.events.include? event  %>
                 <td><%= link_to "Edit", edit_event_url(event) %></td>
                 <td><%= link_to "Delete", event_url(event), :method => 'delete' %></td>
             <%end%>

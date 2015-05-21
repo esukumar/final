@@ -6,10 +6,9 @@ Activity.delete_all
 EventActivity.delete_all
 Note.delete_all
 Image.delete_all
-cookies.delete(:user_id)
-reset_session
 
-User.create(email: 'root@example.com', password: 'foo')
+
+User.create(email: 'root@example.com', password: 'foo', name:'root')
 
 Event.create(title:'Chicago Cubs Game', picture:'http://lakeshorepublicmedia.org/wp-content/uploads/2013/07/Wrigley.jpg', user_id:User.find_by(email:'root@example.com').id)
 Event.create(title:'San Francisco Trip', picture:'http://www.babson.edu/Academics/undergraduate/academic-programs/PublishingImages/san-franc.jpg', user_id:User.find_by(email:'root@example.com').id)

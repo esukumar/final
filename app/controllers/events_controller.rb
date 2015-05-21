@@ -2,10 +2,11 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.order('title asc')
+    @user = User.find_by(id:cookies[:user_id])
   end
 
   def show
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by(id:cookies[:user_id])
     @event = Event.find_by(id: params[:id])
     if @event == nil
       redirect_to events_url, notice: "Event not found"
