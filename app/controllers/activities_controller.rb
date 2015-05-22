@@ -1,7 +1,20 @@
 class ActivitiesController < ApplicationController
+  before_action :authorize, :only => [:new, :create, :edit, :update, :destroy]
+
+  def authorize
+    if session[:user_id].blank?
+      redirect_to root_url, notice: "Not Authorized"
+    end
+  end
+
   def index
-    @activities = Activity.order('title asc')
-    @user = User.find_by(id:cookies[:user_id])
+    @user = User.find_by(id:session[:user_id])
+    if params[:keyword].present?
+      @activities = Activity.where("title LIKE ?","%#{params[:keyword]}%")
+    else
+      @activities = Activity.all
+    end
+    @activities = @activities.order('title asc')
   end
 
   def show

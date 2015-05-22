@@ -1,4 +1,11 @@
 class NotesController < ApplicationController
+  before_action :authorize
+
+  def authorize
+    if session[:user_id].blank?
+      redirect_to root_url, notice: "Not Authorized"
+    end
+  end
 
   def new
     @event=Event.find_by(id: params[:event_id])

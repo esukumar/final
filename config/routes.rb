@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   ##### Sign Up and Sign In and Sign Out
-  resources :users, only:[:new,:create,:destroy]
+  resources :users, only:[:show,:new,:create,:destroy]
   resources :sessions, only:[:new,:create,:destroy]
 
   resources :events do

@@ -1,14 +1,20 @@
 <div class="container">
   <h2>Activities</h2>
+
+  <%= form_tag activities_url, :method => "get" do %>
+      <%= text_field_tag :keyword %>
+      <%= submit_tag "Search", {:class=>'btn btn-default'} %>
+  <% end %>
+
   <div class="panel panel-default">
     <table class="table table-striped">
       <% @activities.each do |activity| %>
           <tr>
             <td><%= link_to activity.title, activity_url(activity) %></td>
-            <!--<% if @user.present? and @user.email=="root@example.com" %>-->
-                <!--<td><%= link_to "Edit", edit_activity_url(activity) %></td>-->
-                <!--<td><%= link_to "Delete", activity_url(activity), :method => 'delete' %></td>-->
-            <!--<% end %>-->
+            <% if @user.present? and @user.name=="root" %>
+                <td><%= link_to "Edit", edit_activity_url(activity) %></td>
+                <td><%= link_to "Delete", activity_url(activity), :method => 'delete' %></td>
+            <% end %>
           </tr>
       <% end %>
     </table>

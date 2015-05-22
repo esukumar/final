@@ -1,5 +1,11 @@
 <div class="container">
   <h2>Events</h2>
+
+  <%= form_tag events_url, :method => "get" do %>
+      <%= text_field_tag :keyword %>
+      <%= submit_tag "Search", {:class=>'btn btn-default'} %>
+  <% end %>
+
   <% if @user.present? %>
     <p><%= link_to "Add Event", new_event_url %></p>
   <%end%>
@@ -11,6 +17,9 @@
             <% if @user.present? and @user.events.include? event  %>
                 <td><%= link_to "Edit", edit_event_url(event) %></td>
                 <td><%= link_to "Delete", event_url(event), :method => 'delete' %></td>
+            <%else%>
+                <td></td>
+                <td></td>
             <%end%>
           </tr>
       <% end %>

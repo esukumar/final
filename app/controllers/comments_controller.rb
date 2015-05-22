@@ -1,4 +1,11 @@
 class CommentsController < ApplicationController
+  before_action :authorize
+
+  def authorize
+    if session[:user_id].blank?
+      redirect_to root_url, notice: "Not Authorized"
+    end
+  end
 
   def create
     @event = Event.find_by(id: params[:event_id])
@@ -6,7 +13,7 @@ class CommentsController < ApplicationController
     @comment.desc = params[:desc]
     @comment.note_id = params[:note_id]
     @comment.image_id = params[:image_id]
-    @comment.user_id = cookies[:user_id]
+    @comment.user_id = session[:user_id]
     if @comment.save
       @event.touch
     end
