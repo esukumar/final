@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "activities", force: :cascade do |t|
     t.string "title"
   end
@@ -24,17 +27,17 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "user_id"
   end
 
-  add_index "comments", ["image_id"], name: "index_comments_on_image_id"
-  add_index "comments", ["note_id"], name: "index_comments_on_note_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["image_id"], name: "index_comments_on_image_id", using: :btree
+  add_index "comments", ["note_id"], name: "index_comments_on_note_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "event_activities", force: :cascade do |t|
     t.integer "event_id"
     t.integer "activity_id"
   end
 
-  add_index "event_activities", ["activity_id"], name: "index_event_activities_on_activity_id"
-  add_index "event_activities", ["event_id"], name: "index_event_activities_on_event_id"
+  add_index "event_activities", ["activity_id"], name: "index_event_activities_on_activity_id", using: :btree
+  add_index "event_activities", ["event_id"], name: "index_event_activities_on_event_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -44,7 +47,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "user_id"
   end
 
-  add_index "events", ["user_id"], name: "index_events_on_user_id"
+  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "title"
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at"
   end
 
-  add_index "images", ["event_id"], name: "index_images_on_event_id"
+  add_index "images", ["event_id"], name: "index_images_on_event_id", using: :btree
 
   create_table "notes", force: :cascade do |t|
     t.string   "title"
@@ -63,7 +66,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "event_id"
   end
 
-  add_index "notes", ["event_id"], name: "index_notes_on_event_id"
+  add_index "notes", ["event_id"], name: "index_notes_on_event_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string "email"
