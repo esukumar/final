@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Edit this Image</h2>
+    <h2>Edit this Image (<%=@event.title%>)</h2>
     <% if @image.errors.any? %>
         <ul>
           <% @image.errors.full_messages.each do |msg| %>

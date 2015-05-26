@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Add a New Note</h2>
+    <h2>Add a New Note (<%=@event.title%>)</h2>
     <% if @note.errors.any? %>
         <ul>
           <% @note.errors.full_messages.each do |msg| %>

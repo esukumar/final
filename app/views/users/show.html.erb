@@ -12,5 +12,16 @@
     <p>
       <%= link_to "Delete Account", user_url(@user), :method => 'delete', :class =>'btn btn-default'%>
     </p>
+    <br><br>
+    <h3>My Events</h3>
+    <div class="panel panel-default">
+        <table class="table table-striped">
+          <% @user.events.each do |event| %>
+              <tr>
+                <td><%= link_to event.title, event_url(event.id) %></td>
+              </tr>
+          <% end %>
+        </table>
+    </div>
 
 </div>

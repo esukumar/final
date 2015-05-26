@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Edit this Event</h2>
+    <h2>Edit this Event (<%=@event.title%>)</h2>
     <% if @event.errors.any? %>
         <ul>
           <% @event.errors.full_messages.each do |msg| %>

@@ -26,6 +26,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @comments = @user.comments
+    @comments.each {|comment| comment.delete}
+    @events = @user.events
+    @events.each {|event| event.delete}
     @user.delete
     reset_session
     redirect_to root_url, :flash => {:notice => "Your account has been deleted."}

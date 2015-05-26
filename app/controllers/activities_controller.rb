@@ -60,6 +60,7 @@ class ActivitiesController < ApplicationController
 
   def edit
     @activity = Activity.find_by(id: params[:id])
+    @errors = []
   end
 
   def update
@@ -68,6 +69,7 @@ class ActivitiesController < ApplicationController
     if @activity.save
       redirect_to activities_url
     else
+      @errors = @activity.errors
       render 'edit'
     end
   end
