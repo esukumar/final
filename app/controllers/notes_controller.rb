@@ -48,7 +48,7 @@ class NotesController < ApplicationController
   def destroy
     @event = Event.find_by(id: params[:event_id])
     @note = Note.find_by(id: params[:id])
-    @note.delete
+    @note.destroy
     @event.touch
     redirect_to event_url(@event)
   end

@@ -77,7 +77,7 @@ class ActivitiesController < ApplicationController
   def destroy
     @event=Event.find_by(id: params[:event_id])
     @activity = Activity.find_by(id: params[:id])
-    @activity.delete
+    @activity.destroy
     redirect_to activities_url
   end
 end

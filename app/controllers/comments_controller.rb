@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
   def destroy
     @event = Event.find_by(id: params[:event_id])
     @comment = Comment.find_by(id: params[:id])
-    @comment.delete
+    @comment.destroy
     @event.touch
     redirect_to event_url(@event)
   end
