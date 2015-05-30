@@ -22,15 +22,15 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @events=@user.events.limit(1000)
   end
 
   def destroy
-    @comments = @user.comments
-    @comments.each {|comment| comment.delete}
-    @events = @user.events
-    @events.each {|event| event.delete}
-    @user.delete
+    # @comments = @user.comments
+    # @comments.each {|comment| comment.delete}
+    # @events = @user.events
+    # @events.each {|event| event.delete}
+    @user.destroy
     reset_session
     redirect_to root_url, :flash => {:notice => "Your account has been deleted."}
   end

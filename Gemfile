@@ -30,6 +30,7 @@ gem 'ez'
 gem 'quiet_assets'
 gem 'therubyracer'
 gem 'bcrypt'
+gem 'kaminari'
 
 
 # Use ActiveModel has_secure_password

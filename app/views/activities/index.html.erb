@@ -6,6 +6,7 @@
       <%= submit_tag "Search", {:class=>'btn btn-default'} %>
   <% end %>
 
+  <%= paginate @activities %>
   <div class="panel panel-default">
     <table class="table table-striped">
       <% @activities.each do |activity| %>

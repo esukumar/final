@@ -16,7 +16,7 @@
     <h3>My Events</h3>
     <div class="panel panel-default">
         <table class="table table-striped">
-          <% @user.events.each do |event| %>
+          <% @events.each do |event| %>
               <tr>
                 <td><%= link_to event.title, event_url(event.id) %></td>
               </tr>

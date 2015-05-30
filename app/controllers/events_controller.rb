@@ -12,9 +12,9 @@ class EventsController < ApplicationController
     if params[:keyword].present?
       @events = Event.where("title LIKE ?","%#{params[:keyword]}%")
     else
-      @events = Event.all
+      @events = Event.all.limit(1000)
     end
-    @events = @events.order('title asc')
+    @events = @events.order('title asc').page params[:page]
   end
 
   def show
@@ -23,10 +23,10 @@ class EventsController < ApplicationController
     if @event == nil
       redirect_to events_url, notice: "Event not found"
     else
-      @notes = @event.notes
-      @images = @event.images
-      @posts = (@notes+@images).sort_by { |post| post.created_at}.reverse
-      @activities = @event.activities
+      @notes = @event.notes.limit(1000)
+      @images = @event.images.limit(1000)
+      @posts = (@notes+@images).sort_by{|post| post.created_at}.reverse
+      @activities = @event.activities.limit(1000)
       @event_activities = @activities.map {|activity| EventActivity.find_by(event_id:@event.id,activity_id:activity.id)}
     end
   end
@@ -66,7 +66,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find_by(id: params[:id])
-    @event.delete
+    @event.destroy
     redirect_to events_url
   end
 

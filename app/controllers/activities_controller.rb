@@ -12,9 +12,9 @@ class ActivitiesController < ApplicationController
     if params[:keyword].present?
       @activities = Activity.where("title LIKE ?","%#{params[:keyword]}%")
     else
-      @activities = Activity.all
+      @activities = Activity.all.limit(1000)
     end
-    @activities = @activities.order('title asc')
+    @activities = @activities.order('title asc').page params[:page]
   end
 
   def show
@@ -77,7 +77,7 @@ class ActivitiesController < ApplicationController
   def destroy
     @event=Event.find_by(id: params[:event_id])
     @activity = Activity.find_by(id: params[:id])
-    @activity.delete
+    @activity.destroy
     redirect_to activities_url
   end
 end
