@@ -5,16 +5,18 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user.present?
-      if user.authenticate(params[:password])
-        session[:user_id] = user.id
+    @user = User.find_by(email: params[:email])
+    if @user.present?
+      if @user.authenticate(params[:password])
+        session[:user_id] = @user.id
         redirect_to root_url, notice: "Welcome back!"
       else
-        redirect_to root_url, notice: "Unknown email or password."
+        flash[:notice] = "Unknown email or password."
+        render 'new'
       end
     else
-      redirect_to root_url, notice: "Unknown email or password."
+      flash[:notice] = "Unknown email or password."
+      render 'new'
     end
   end
 
